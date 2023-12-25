@@ -331,7 +331,89 @@ app.post('/checkinVisitor', async function (req, res) {
     }
   });
 });
-
+/**
+ * @swagger
+ * /viewVisitor:
+ *   get:
+ *     summary: "View Visitors"
+ *     description: "View a list of visitors"
+ *     tags:
+ *       - Visitor Management
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         type: string
+ *         description: "Bearer token for authentication"
+ *         required: true
+ *     responses:
+ *       '200':
+ *         description: "List of visitors retrieved successfully"
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/definitions/Visitor'
+ *       '400':
+ *         description: "Invalid token or error in retrieving visitors"
+ *       '401':
+ *         description: "Unauthorized - Invalid token or insufficient permissions"
+ *     produces:
+ *       - "application/json"
+ *   securityDefinitions:
+ *     bearerAuth:
+ *       type: apiKey
+ *       name: Authorization
+ *       in: header
+ * definitions:
+ *   Visitor:
+ *     type: object
+ *     properties:
+ *       name:
+ *         type: string
+ *         description: "Name of the visitor"
+ *       idNumber:
+ *         type: string
+ *         description: "ID number of the visitor"
+ *       documentType:
+ *         type: string
+ *         description: "Type of document presented by the visitor"
+ *       gender:
+ *         type: string
+ *         description: "Gender of the visitor"
+ *       birthDate:
+ *         type: string
+ *         format: date
+ *         description: "Birthdate of the visitor"
+ *       age:
+ *         type: integer
+ *         description: "Age of the visitor"
+ *       documentExpiry:
+ *         type: string
+ *         format: date
+ *         description: "Expiry date of the presented document"
+ *       company:
+ *         type: string
+ *         description: "Company or organization the visitor represents"
+ *       TelephoneNumber:
+ *         type: string
+ *         description: "Telephone number of the visitor"
+ *       vehicleNumber:
+ *         type: string
+ *         description: "Vehicle number of the visitor"
+ *       category:
+ *         type: string
+ *         description: "Category or purpose of the visit"
+ *       ethnicity:
+ *         type: string
+ *         description: "Ethnicity of the visitor"
+ *       photoAttributes:
+ *         type: string
+ *         description: "Additional attributes related to visitor's photo"
+ *       passNumber:
+ *         type: string
+ *         description: "Pass number assigned to the visitor"
+ */
 //view visitor 
 app.get('/viewVisitor', async (req, res) => {
   await client.connect();
